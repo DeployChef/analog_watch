@@ -1,4 +1,5 @@
 import 'package:analog_watch/home.dart';
+import 'package:analog_watch/res/themes.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,9 +14,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Watch',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: ThemeMode.dark,
       home: const Home(),
     );
   }

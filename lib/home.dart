@@ -1,3 +1,5 @@
+import 'package:analog_watch/analog_watch.dart';
+import 'package:analog_watch/classic_watch.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
@@ -6,10 +8,14 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.deepOrangeAccent,
-      body: Center(
-        child: Container(),
-
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 26),
+        child: Column(children: [
+          ClassicWatch("Moscow"),
+          SizedBox(height: 40,),
+          AnalogWatch(),
+          SizedBox()
+        ],),
       ),
     );
   }
