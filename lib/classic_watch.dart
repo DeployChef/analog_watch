@@ -51,11 +51,13 @@ class _TimeTextState extends State<TimeText> {
 
   @override
   Widget build(BuildContext context) {
+    var minuteText = _timeOfDay.minute > 9 ? _timeOfDay.minute : "0${_timeOfDay.minute}";
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          "${_timeOfDay.hour}:${_timeOfDay.minute}",
+          "${_timeOfDay.hour}:$minuteText",
           style: Theme.of(context).textTheme.headline1,
         ),
         // SizedBox(

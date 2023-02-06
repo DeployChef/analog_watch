@@ -18,8 +18,7 @@ class AnalogWatch extends StatelessWidget {
         color: Theme.of(context).backgroundColor,
         boxShadow: [
           BoxShadow(
-            color:
-                Theme.of(context).colorScheme.inversePrimary.withOpacity(0.1),
+            color: Theme.of(context).colorScheme.inversePrimary.withOpacity(0.1),
             blurRadius: 10,
             spreadRadius: 2,
             offset: Offset(0, -10),
@@ -31,8 +30,7 @@ class AnalogWatch extends StatelessWidget {
             offset: Offset(0, 15),
           ),
           BoxShadow(
-            color:
-                Theme.of(context).colorScheme.inversePrimary.withOpacity(0.3),
+            color: Theme.of(context).colorScheme.inversePrimary.withOpacity(0.3),
             blurRadius: 10,
             spreadRadius: 2,
             inset: true,
@@ -47,7 +45,10 @@ class AnalogWatch extends StatelessWidget {
           ),
         ],
       ),
-      child: Clock(),
+      child: RotatedBox(
+        quarterTurns: 3,
+        child: Clock(),
+      ),
     );
   }
 }
@@ -70,7 +71,7 @@ class _ClockState extends State<Clock> {
       setState(() {
         _now = DateTime.now();
       });
-     });
+    });
   }
 
   @override
@@ -106,36 +107,24 @@ class ClockPainter extends CustomPainter {
       ..strokeCap = StrokeCap.round;
     var secondLinePaint = dotPaint;
 
-    //hour line
-    var hourX = centerX +
-        size.width *
-            0.26 *
-            cos((_now.hour * 30 + _now.minute * 0.5) * pi / 180);
-    var hourY = centerY +
-        size.width *
-            0.26 *
-            sin((_now.hour * 30 + _now.minute * 0.5) * pi / 180);
-
-    canvas.drawLine(center, Offset(hourX, hourY), hourLinePaint);
-
     //minute line
-    var minuteX =
-        centerX + size.width * 0.36 * cos((_now.minute * 6) * pi / 180);
-    var minuteY =
-        centerY + size.width * 0.36 * sin((_now.minute * 6) * pi / 180);
+    var minuteX = centerX + size.width * 0.36 * cos((_now.minute * 6) * pi / 180);
+    var minuteY = centerY + size.width * 0.36 * sin((_now.minute * 6) * pi / 180);
 
     canvas.drawLine(center, Offset(minuteX, minuteY), minutLinePaint);
 
-    //second line
-    var secondX =
-        centerX + size.width * 0.4 * cos((_now.second * 6 + _now.millisecond * 0.00559) * pi / 180);
-    var secondY =
-        centerY + size.width * 0.4 * sin((_now.second * 6 + _now.millisecond * 0.00559) * pi / 180);
+    //hour line
+    var hourX = centerX + size.width * 0.26 * cos((_now.hour * 30 + _now.minute * 0.5) * pi / 180);
+    var hourY = centerY + size.width * 0.26 * sin((_now.hour * 30 + _now.minute * 0.5) * pi / 180);
 
-    var secondX2 = centerX +
-        size.width * 0.06 * cos(((30 - _now.second).abs() * 6) * pi / 180);
-    var secondY2 = centerY +
-        size.width * 0.06 * sin(((30 - _now.second).abs() * 6) * pi / 180);
+    canvas.drawLine(center, Offset(hourX, hourY), hourLinePaint);
+
+    //second line
+    var secondX = centerX + size.width * 0.4 * cos((_now.second * 6 + _now.millisecond * 0.00559) * pi / 180);
+    var secondY = centerY + size.width * 0.4 * sin((_now.second * 6 + _now.millisecond * 0.00559) * pi / 180);
+
+    var secondX2 = centerX + size.width * 0.06 * cos(((30 - _now.second).abs() * 6) * pi / 180);
+    var secondY2 = centerY + size.width * 0.06 * sin(((30 - _now.second).abs() * 6) * pi / 180);
 
     canvas.drawLine(center, Offset(secondX, secondY), secondLinePaint);
     //canvas.drawLine(center, Offset(secondX2, secondY2), secondLinePaint);
